@@ -1,8 +1,8 @@
 ﻿using DTO.Models.Abstract;
 
-namespace DTO.Models.Concrete.Generated;
+namespace DTO.Models.Concrete;
 
-public partial class Category : EntityBase
+public class Category : EntityBase
 {
     public string Name { get; set; } = null!;
 

@@ -1,9 +1,9 @@
 ﻿using DTO.Models.Abstract;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DTO.Models.Concrete.Generated;
+namespace DTO.Models.Concrete;
 
-public partial class Product : EntityBase
+public class Product : EntityBase
 {
     public string Name { get; set; } = null!;
 
@@ -11,4 +11,8 @@ public partial class Product : EntityBase
     public decimal Price { get; set; }
 
     public virtual Category Category { get; set; } = null!;
+
+    public override string ToString() =>
+    $"Id: {Id}\nName: {Name}\nPrice: {Price}\nCategoryId: {Category.Id}\n" +
+    $"CreatedOn: {CreatedOn}\nLastModifiedOn: {LastModifiedOn}";
 }

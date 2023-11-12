@@ -2,7 +2,7 @@
 
 namespace DAL.Data;
 
-public static class Startup
+public static class OnStartup
 {
     public enum DatabaseType
     {
@@ -13,7 +13,7 @@ public static class Startup
         type switch
         {
             DatabaseType.Production => "ProductionDatabase",
-            DatabaseType.Testing => "TestingDataDatabase",
+            DatabaseType.Testing => "TestingDatabase",
             _ => throw new InvalidOperationException()
         };
 
@@ -22,9 +22,9 @@ public static class Startup
         DirectoryInfo directory = new(Directory.GetCurrentDirectory());
 
         var configuration = new ConfigurationBuilder()
-            .SetBasePath(directory.Parent!.ToString())
-        .AddJsonFile("appsettings.json")
-        .Build();
+            .SetBasePath(directory.Parent!.Parent!.Parent!.Parent!.ToString())
+            .AddJsonFile("appsettings.json")
+            .Build();
 
         return configuration.GetConnectionString(JSONStringFromType(type));
     }

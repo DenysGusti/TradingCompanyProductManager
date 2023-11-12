@@ -1,15 +1,17 @@
-﻿using DTO.Models.Concrete.Generated;
+﻿using DTO.Models.Concrete;
 using Microsoft.EntityFrameworkCore;
-using static DAL.Data.Startup;
+using static DAL.Data.OnStartup;
 
 namespace DAL.Data;
 
-public class ProductManagerContext : DbContext
+public class TradingCompanyContext : DbContext
 {
     private readonly string? connectionString;
 
-    public ProductManagerContext(DatabaseType type = DatabaseType.Production)
+    public TradingCompanyContext(DatabaseType type)
         => connectionString = GetConnectionString(type);
+
+    public DbSet<User> Users { get; set; } = null!;
 
     public DbSet<Category> Categories { get; set; } = null!;
 

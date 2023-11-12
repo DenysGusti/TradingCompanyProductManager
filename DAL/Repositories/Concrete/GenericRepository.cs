@@ -7,10 +7,10 @@ namespace DAL.Repositories.Concrete
 {
     public class GenericRepository<T> : IRepository<T> where T : EntityBase
     {
-        private readonly ProductManagerContext context;
+        private readonly TradingCompanyContext context;
         private readonly DbSet<T> dbSet;
 
-        public GenericRepository(ProductManagerContext context_) { 
+        public GenericRepository(TradingCompanyContext context_) { 
             context = context_;
             dbSet = context.Set<T>();
         }
