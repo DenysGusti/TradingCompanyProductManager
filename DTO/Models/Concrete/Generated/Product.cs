@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using DTO.Models.Abstract;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DTO.Models.Generated;
+namespace DTO.Models.Concrete.Generated;
 
-public partial class Product
+public partial class Product : EntityBase
 {
-    public int Id { get; set; }
-
     public string Name { get; set; } = null!;
 
     [Column(TypeName = "decimal(6, 2)")]

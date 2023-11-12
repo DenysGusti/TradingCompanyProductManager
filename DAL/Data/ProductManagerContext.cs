@@ -1,24 +1,20 @@
-﻿using DTO.Models.Generated;
+﻿using DTO.Models.Concrete.Generated;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using static DAL.Data.Startup;
 
 namespace DAL.Data;
 
 public class ProductManagerContext : DbContext
 {
+    private readonly string? connectionString;
+
+    public ProductManagerContext(DatabaseType type = DatabaseType.Production)
+        => connectionString = GetConnectionString(type);
+
     public DbSet<Category> Categories { get; set; } = null!;
 
     public DbSet<Product> Products { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        DirectoryInfo directory = new(Directory.GetCurrentDirectory());
-
-        var configuration = new ConfigurationBuilder()
-            .SetBasePath(directory.Parent!.ToString())
-            .AddJsonFile("appsettings.json")
-            .Build();
-
-        optionsBuilder.UseSqlServer(configuration.GetConnectionString("MainDatabase"));
-    }
+        => optionsBuilder.UseSqlServer(connectionString);
 }
