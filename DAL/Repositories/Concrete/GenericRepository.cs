@@ -8,9 +8,10 @@ namespace DAL.Repositories.Concrete
     public class GenericRepository<T> : IRepository<T> where T : EntityBase
     {
         private readonly TradingCompanyContext context;
+
         private readonly DbSet<T> dbSet;
 
-        public GenericRepository(TradingCompanyContext context_) { 
+        public GenericRepository(TradingCompanyContext context_) {
             context = context_;
             dbSet = context.Set<T>();
         }
@@ -24,5 +25,7 @@ namespace DAL.Repositories.Concrete
         public T? GetById(int id) => dbSet.Find(id);
 
         public void Update(T entity) => dbSet.Update(entity);
+
+        public DbSet<T> Table => dbSet;
     }
 }

@@ -25,4 +25,6 @@ public class UnitOfWork : IUnitOfWork
     }
 
     public void Commit() => context.SaveChanges();
+
+    public TradingCompanyContext Database => context;
 }
